@@ -4,7 +4,6 @@ import com.nhaarman.mockito_kotlin.whenever
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
 import org.mockito.Mockito.*
@@ -22,12 +21,10 @@ class LocalDAOTest {
     var usersTable: MutableMap<Int, User> = mutableMapOf()
     var commentsTable: MutableMap<Int, List<Comment>> = mutableMapOf()
 
-    @Mock
-    lateinit var post: Post
-    @Mock
-    lateinit var comment: Comment
-    @Mock
-    lateinit var comments: List<Comment>
+
+    val post: Post = mock(Post::class.java)
+    val comment: Comment = mock(Comment::class.java)
+    val comments: List<Comment> = mutableListOf()
 
 
     val dao: LocalDAO = LocalDAO(postsTable, usersTable, commentsTable)
@@ -35,7 +32,6 @@ class LocalDAOTest {
     @Before
     fun beforeTest() {
         whenever(post.id).thenReturn(2)
-        whenever(comments[0]).thenReturn(comment)
     }
 
     @Test
